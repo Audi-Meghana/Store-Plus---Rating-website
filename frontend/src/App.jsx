@@ -32,8 +32,8 @@ import AnalyticsPage    from "./pages/owner/AnalyticsPage.jsx";
 import DealsManagerPage from "./pages/owner/DealsManagerPage.jsx";
 import OwnerProfilePage from "./pages/owner/OwnerProfilePage.jsx";
 
-// ── Admin ─────────────────────────────────────────────────────────────────────
-import AdminDashboard   from "./pages/admin/AdminDashboard.jsx";
+// ── Admin (TEMP FIX: AdminDashboard disabled) ─────────────────────────────────
+// import AdminDashboard from "./pages/admin/AdminDashboard.jsx"; ❌ disabled
 import ManageStoresPage from "./pages/admin/ManageStoresPage.jsx";
 import ManageUsersPage  from "./pages/admin/ManageUsersPage.jsx";
 import ModerationPage   from "./pages/admin/ModerationPage.jsx";
@@ -54,16 +54,16 @@ function App() {
       <Suspense fallback={<Loading />}>
         <Routes>
 
-          {/* ── Public ───────────────────────────────────────────────────── */}
+          {/* ── Public */}
           <Route path="/" element={<HomePage />} />
           <Route path="/explore" element={<ExplorePage />} />
           <Route path="/store/:id" element={<StoreDetailPage />} />
           <Route path="/deals" element={<DealsPage />} />
 
-          {/* ── Write Review (Public) */}
+          {/* ── Write Review */}
           <Route path="/write-review/:id" element={<WriteReviewPage />} />
 
-          {/* ── Guest only */}
+          {/* ── Guest */}
           <Route path="/login" element={<GuestRoute><LoginPage /></GuestRoute>} />
           <Route path="/register" element={<GuestRoute><RegisterPage /></GuestRoute>} />
           <Route path="/forgot-password" element={<GuestRoute><ForgotPasswordPage /></GuestRoute>} />
@@ -82,8 +82,8 @@ function App() {
           <Route path="/owner/deals" element={<OwnerRoute><DealsManagerPage /></OwnerRoute>} />
           <Route path="/owner/profile" element={<OwnerRoute><OwnerProfilePage /></OwnerRoute>} />
 
-          {/* ── Admin */}
-          <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+          {/* ── Admin (without dashboard) */}
+          {/* <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} /> */}
           <Route path="/admin/stores" element={<AdminRoute><ManageStoresPage /></AdminRoute>} />
           <Route path="/admin/users" element={<AdminRoute><ManageUsersPage /></AdminRoute>} />
           <Route path="/admin/moderation" element={<AdminRoute><ModerationPage /></AdminRoute>} />
