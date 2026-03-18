@@ -1,21 +1,39 @@
 {
   "name": "storepulse-backend",
   "version": "1.0.0",
+  "type": "module",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "test": "jest --watchAll"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1009.0",
+    "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
-    "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.0",
-    "mongoose": "^9.0.0",
-    "sequelize": "^6.32.1"
+    "bull": "^4.16.5",
+    "cloudinary": "^2.9.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "express-rate-limit": "^8.3.1",
+    "helmet": "^8.1.0",
+    "ioredis": "^5.10.0",
+    "joi": "^18.0.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.3.0",
+    "morgan": "^1.10.1",
+    "multer": "^2.1.1",
+    "node-cron": "^4.2.1",
+    "nodemailer": "^8.0.2",
+    "streamifier": "^0.1.1",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "jest": "^30.3.0",
+    "nodemon": "^2.0.22",
+    "supertest": "^7.2.2"
   }
 }

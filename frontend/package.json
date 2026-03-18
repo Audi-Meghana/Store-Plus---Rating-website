@@ -10,11 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.13.2",
+    "@hookform/resolvers": "^5.2.2",
+    "axios": "^1.13.6",
+    "date-fns": "^4.1.0",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.577.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-hook-form": "^7.71.2",
     "react-hot-toast": "^2.6.0",
-    "react-router-dom": "^7.9.6"
+    "react-leaflet": "^5.0.0",
+    "react-router-dom": "^7.13.1",
+    "recharts": "^3.8.0",
+    "zod": "^4.3.6",
+    "zustand": "^5.0.12"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -23,6 +32,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "autoprefixer": "^10.4.22",
+    "baseline-browser-mapping": "^2.10.8",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
