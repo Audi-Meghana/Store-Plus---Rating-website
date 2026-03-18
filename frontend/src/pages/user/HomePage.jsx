@@ -143,7 +143,11 @@ export default function HomePage() {
     if (sq.trim()) navigate(`/explore?search=${encodeURIComponent(sq)}&city=${encodeURIComponent(sc)}`);
   };
 
-  const display = tab === "all" ? shops : shops.filter(s => s.category?.toLowerCase() === tab);
+const display = tab === "all"
+  ? shops
+  : shops.filter(s =>
+      s.category?.toLowerCase().includes(tab)
+    );
 
   return (
     <div style={{ minHeight:"100vh", background:"#FAFBFF", fontFamily:"'Plus Jakarta Sans',sans-serif", overflowX:"hidden" }}>
@@ -416,7 +420,7 @@ export default function HomePage() {
           <div className="store-grid">
             {fetching
               ? [1,2,3,4,5,6].map(n=><SkeletonCard key={n}/>)
-              : (display.length?display:shops).length===0
+              : (display.length > 0 ? display : shops).length===0
               ? (
                 <div style={{ gridColumn:"1/-1", textAlign:"center", padding:"48px 24px", background:"#fff", borderRadius:18, border:"1.5px solid #F1F5F9" }}>
                   <Store size={36} style={{ color:"#E5E7EB", margin:"0 auto 10px" }}/>
