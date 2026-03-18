@@ -1,58 +1,59 @@
 import "dotenv/config";
-import app       from "./app.js";
+import app from "./app.js";
 import connectDB from "./config/db.js";
 
 const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
   try {
+    // Connect Database
     await connectDB();
+    console.log("MongoDB connected successfully");
 
-    // Start background jobs — gracefully skip if scheduler not found
+    // Start background jobs (optional)
     try {
       const { startJobs } = await import("./jobs/jobScheduler.js");
       startJobs();
+      console.log("✅ Background jobs scheduled");
     } catch (e) {
-      console.warn("⚠️  Background jobs not started:", e.message);
+      console.warn("⚠️ Background jobs not started:", e.message);
     }
 
+    // Start server
     const server = app.listen(PORT, () => {
-      console.log(`✅ Server running on http://localhost:${PORT}`);
+      console.log(`✅ Server running on port ${PORT}`);
     });
 
-    let retryCount = 0;
-    const maxRetries = 5;
-
+    // Handle server errors
     server.on("error", (err) => {
       if (err.code === "EADDRINUSE") {
-        retryCount += 1;
-        if (retryCount > maxRetries) {
-          console.error(`Port ${PORT} still busy after ${maxRetries} retries. Exiting.`);
-          process.exit(1);
-          return;
-        }
-        console.error(`Port ${PORT} is busy, retrying in 1s... (${retryCount}/${maxRetries})`);
-        setTimeout(() => { server.close(); server.listen(PORT); }, 1000);
+        console.error(`❌ Port ${PORT} is already in use`);
+        process.exit(1);
       } else {
-        console.error("Server error:", err);
+        console.error("❌ Server error:", err);
         process.exit(1);
       }
     });
 
+    // Graceful shutdown
     const shutdown = () => {
       console.log("Shutting down server...");
-      server.close(() => { console.log("Server closed"); process.exit(0); });
+      server.close(() => {
+        console.log("Server closed");
+        process.exit(0);
+      });
     };
 
-    process.on("SIGINT",  shutdown);
+    process.on("SIGINT", shutdown);
     process.on("SIGTERM", shutdown);
 
   } catch (error) {
-    console.error("Failed to start server:", error.message);
+    console.error("❌ Failed to start server:", error.message);
     process.exit(1);
   }
 };
 
+// Handle unhandled promises
 process.on("unhandledRejection", (err) => {
   console.error("Unhandled Rejection:", err);
   process.exit(1);
