@@ -34,6 +34,7 @@ import OwnerProfilePage from "./pages/owner/OwnerProfilePage.jsx";
 
 // ── Admin (TEMP FIX: AdminDashboard disabled) ─────────────────────────────────
 // import AdminDashboard from "./pages/admin/AdminDashboard.jsx"; ❌ disabled
+import AdminDashboard from "./pages/admin/AdminDashboardNew.jsx";
 import ManageStoresPage from "./pages/admin/ManageStoresPage.jsx";
 import ManageUsersPage  from "./pages/admin/ManageUsersPage.jsx";
 import ModerationPage   from "./pages/admin/ModerationPage.jsx";
