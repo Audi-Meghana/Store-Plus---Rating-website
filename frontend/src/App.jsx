@@ -33,7 +33,7 @@ import DealsManagerPage from "./pages/owner/DealsManagerPage";
 import OwnerProfilePage from "./pages/owner/OwnerProfilePage";
 
 // ── Admin ─────────────────────────────────────────────────────────────────────
-import AdminDashboard   from "./pages/admin/AdminDashboard.jsx";
+import AdminDashboard   from "./pages/admin/AdminDashboard";
 import ManageStoresPage from "./pages/admin/ManageStoresPage";
 import ManageUsersPage  from "./pages/admin/ManageUsersPage";
 import ModerationPage   from "./pages/admin/ModerationPage";
