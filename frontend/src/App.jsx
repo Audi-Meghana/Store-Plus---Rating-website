@@ -9,35 +9,35 @@ import ProtectedRoute, {
 } from "./components/common/ProtectedRoute";
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
-import LoginPage          from "./pages/auth/LoginPage";
-import RegisterPage       from "./pages/auth/RegisterPage";
-import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage";
-import ResetPasswordPage  from "./pages/auth/ResetPasswordPage";
+import LoginPage          from "./pages/auth/LoginPage.jsx";
+import RegisterPage       from "./pages/auth/RegisterPage.jsx";
+import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage.jsx";
+import ResetPasswordPage  from "./pages/auth/ResetPasswordPage.jsx";
 
 // ── User ──────────────────────────────────────────────────────────────────────
-import HomePage          from "./pages/user/HomePage";
-import ExplorePage       from "./pages/user/ExplorePage";
-import StoreDetailPage   from "./pages/user/StoreDetailPage";
-import WriteReviewPage   from "./pages/user/WriteReviewPage";
-import ProfilePage       from "./pages/user/ProfilePage";
-import WishlistPage      from "./pages/user/WishlistPage";
-import NotificationsPage from "./pages/user/NotificationsPage";
-import DealsPage         from "./pages/user/DealsPage";          // ← ADD THIS
+import HomePage          from "./pages/user/HomePage.jsx";
+import ExplorePage       from "./pages/user/ExplorePage.jsx";
+import StoreDetailPage   from "./pages/user/StoreDetailPage.jsx";
+import WriteReviewPage   from "./pages/user/WriteReviewPage.jsx";
+import ProfilePage       from "./pages/user/ProfilePage.jsx";
+import WishlistPage      from "./pages/user/WishlistPage.jsx";
+import NotificationsPage from "./pages/user/NotificationsPage.jsx";
+import DealsPage         from "./pages/user/DealsPage.jsx";
 
 // ── Owner ─────────────────────────────────────────────────────────────────────
-import OwnerDashboard   from "./pages/owner/OwnerDashboard";
-import ManageStorePage  from "./pages/owner/ManageStorePage";
-import OwnerReviewsPage from "./pages/owner/ReviewsPage";
-import AnalyticsPage    from "./pages/owner/AnalyticsPage";
-import DealsManagerPage from "./pages/owner/DealsManagerPage";
-import OwnerProfilePage from "./pages/owner/OwnerProfilePage";
+import OwnerDashboard   from "./pages/owner/OwnerDashboard.jsx";
+import ManageStorePage  from "./pages/owner/ManageStorePage.jsx";
+import OwnerReviewsPage from "./pages/owner/ReviewsPage.jsx";
+import AnalyticsPage    from "./pages/owner/AnalyticsPage.jsx";
+import DealsManagerPage from "./pages/owner/DealsManagerPage.jsx";
+import OwnerProfilePage from "./pages/owner/OwnerProfilePage.jsx";
 
 // ── Admin ─────────────────────────────────────────────────────────────────────
-import AdminDashboard   from "./pages/admin/AdminDashboard";
-import ManageStoresPage from "./pages/admin/ManageStoresPage";
-import ManageUsersPage  from "./pages/admin/ManageUsersPage";
-import ModerationPage   from "./pages/admin/ModerationPage";
-import CategoriesPage   from "./pages/admin/CategoriesPage";
+import AdminDashboard   from "./pages/admin/AdminDashboard.jsx";
+import ManageStoresPage from "./pages/admin/ManageStoresPage.jsx";
+import ManageUsersPage  from "./pages/admin/ManageUsersPage.jsx";
+import ModerationPage   from "./pages/admin/ModerationPage.jsx";
+import CategoriesPage   from "./pages/admin/CategoriesPage.jsx";
 
 const Loading = () => (
   <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -55,59 +55,41 @@ function App() {
         <Routes>
 
           {/* ── Public ───────────────────────────────────────────────────── */}
-          <Route path="/"                    element={<HomePage />} />
-          <Route path="/explore"             element={<ExplorePage />} />
-          <Route path="/store/:id"           element={<StoreDetailPage />} />
-          <Route path="/deals"               element={<DealsPage />} />  {/* ← ADD THIS */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/store/:id" element={<StoreDetailPage />} />
+          <Route path="/deals" element={<DealsPage />} />
 
-          {/* ── Write Review is PUBLIC — no auth guard ────────────────────── */}
-          <Route path="/write-review/:id"    element={<WriteReviewPage />} />
+          {/* ── Write Review (Public) */}
+          <Route path="/write-review/:id" element={<WriteReviewPage />} />
 
-          {/* ── Guest only ───────────────────────────────────────────────── */}
-          <Route path="/login"
-            element={<GuestRoute><LoginPage /></GuestRoute>} />
-          <Route path="/register"
-            element={<GuestRoute><RegisterPage /></GuestRoute>} />
-          <Route path="/forgot-password"
-            element={<GuestRoute><ForgotPasswordPage /></GuestRoute>} />
-          <Route path="/reset-password/:token"
-            element={<GuestRoute><ResetPasswordPage /></GuestRoute>} />
+          {/* ── Guest only */}
+          <Route path="/login" element={<GuestRoute><LoginPage /></GuestRoute>} />
+          <Route path="/register" element={<GuestRoute><RegisterPage /></GuestRoute>} />
+          <Route path="/forgot-password" element={<GuestRoute><ForgotPasswordPage /></GuestRoute>} />
+          <Route path="/reset-password/:token" element={<GuestRoute><ResetPasswordPage /></GuestRoute>} />
 
-          {/* ── User routes ───────────────────────────────────────────────── */}
-          <Route path="/profile"
-            element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
-          <Route path="/wishlist"
-            element={<ProtectedRoute><WishlistPage /></ProtectedRoute>} />
-          <Route path="/notifications"
-            element={<AnyAuthRoute><NotificationsPage /></AnyAuthRoute>} />
+          {/* ── User */}
+          <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+          <Route path="/wishlist" element={<ProtectedRoute><WishlistPage /></ProtectedRoute>} />
+          <Route path="/notifications" element={<AnyAuthRoute><NotificationsPage /></AnyAuthRoute>} />
 
-          {/* ── Owner routes ──────────────────────────────────────────────── */}
-          <Route path="/owner/dashboard"
-            element={<OwnerRoute><OwnerDashboard /></OwnerRoute>} />
-          <Route path="/owner/store"
-            element={<OwnerRoute><ManageStorePage /></OwnerRoute>} />
-          <Route path="/owner/reviews"
-            element={<OwnerRoute><OwnerReviewsPage /></OwnerRoute>} />
-          <Route path="/owner/analytics"
-            element={<OwnerRoute><AnalyticsPage /></OwnerRoute>} />
-          <Route path="/owner/deals"
-            element={<OwnerRoute><DealsManagerPage /></OwnerRoute>} />
-          <Route path="/owner/profile"
-            element={<OwnerRoute><OwnerProfilePage /></OwnerRoute>} />
+          {/* ── Owner */}
+          <Route path="/owner/dashboard" element={<OwnerRoute><OwnerDashboard /></OwnerRoute>} />
+          <Route path="/owner/store" element={<OwnerRoute><ManageStorePage /></OwnerRoute>} />
+          <Route path="/owner/reviews" element={<OwnerRoute><OwnerReviewsPage /></OwnerRoute>} />
+          <Route path="/owner/analytics" element={<OwnerRoute><AnalyticsPage /></OwnerRoute>} />
+          <Route path="/owner/deals" element={<OwnerRoute><DealsManagerPage /></OwnerRoute>} />
+          <Route path="/owner/profile" element={<OwnerRoute><OwnerProfilePage /></OwnerRoute>} />
 
-          {/* ── Admin routes ──────────────────────────────────────────────── */}
-          <Route path="/admin/dashboard"
-            element={<AdminRoute><AdminDashboard /></AdminRoute>} />
-          <Route path="/admin/stores"
-            element={<AdminRoute><ManageStoresPage /></AdminRoute>} />
-          <Route path="/admin/users"
-            element={<AdminRoute><ManageUsersPage /></AdminRoute>} />
-          <Route path="/admin/moderation"
-            element={<AdminRoute><ModerationPage /></AdminRoute>} />
-          <Route path="/admin/categories"
-            element={<AdminRoute><CategoriesPage /></AdminRoute>} />
+          {/* ── Admin */}
+          <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+          <Route path="/admin/stores" element={<AdminRoute><ManageStoresPage /></AdminRoute>} />
+          <Route path="/admin/users" element={<AdminRoute><ManageUsersPage /></AdminRoute>} />
+          <Route path="/admin/moderation" element={<AdminRoute><ModerationPage /></AdminRoute>} />
+          <Route path="/admin/categories" element={<AdminRoute><CategoriesPage /></AdminRoute>} />
 
-          {/* ── 404 ───────────────────────────────────────────────────────── */}
+          {/* ── 404 */}
           <Route path="*" element={<Navigate to="/" replace />} />
 
         </Routes>
