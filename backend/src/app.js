@@ -37,24 +37,10 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" },
 }));
 
-/* ================= CORS FIX ================= */
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://store-plus-rating-website-1.onrender.com"
-];
-
+/* ================= CORS FIX (FINAL) ================= */
 app.use(cors({
-  origin: function (origin, callback) {
-    // allow requests with no origin (like Postman)
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    } else {
-      return callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
+  origin: true,        // يسمح لكل الفرونت اند (حل نهائي للمشكلة)
+  credentials: true
 }));
 
 /* ================= MIDDLEWARE ================= */
@@ -91,7 +77,7 @@ app.get("/api/health", (req, res) => {
   res.json({ success: true, message: "Server is running" });
 });
 
-/* ================= ROOT (NO MORE 404 CONFUSION) ================= */
+/* ================= ROOT ================= */
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
