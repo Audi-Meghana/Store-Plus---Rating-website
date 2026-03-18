@@ -33,8 +33,7 @@ import DealsManagerPage from "./pages/owner/DealsManagerPage.jsx";
 import OwnerProfilePage from "./pages/owner/OwnerProfilePage.jsx";
 
 // ── Admin (TEMP FIX: AdminDashboard disabled) ─────────────────────────────────
-// import AdminDashboard from "./pages/admin/AdminDashboard.jsx"; ❌ disabled
-import AdminDashboard from "./pages/admin/AdminDashboardNew.jsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
 import ManageStoresPage from "./pages/admin/ManageStoresPage.jsx";
 import ManageUsersPage  from "./pages/admin/ManageUsersPage.jsx";
 import ModerationPage   from "./pages/admin/ModerationPage.jsx";
@@ -84,7 +83,7 @@ function App() {
           <Route path="/owner/profile" element={<OwnerRoute><OwnerProfilePage /></OwnerRoute>} />
 
           {/* ── Admin (without dashboard) */}
-          {/* <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} /> */}
+          <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} /> 
           <Route path="/admin/stores" element={<AdminRoute><ManageStoresPage /></AdminRoute>} />
           <Route path="/admin/users" element={<AdminRoute><ManageUsersPage /></AdminRoute>} />
           <Route path="/admin/moderation" element={<AdminRoute><ModerationPage /></AdminRoute>} />
